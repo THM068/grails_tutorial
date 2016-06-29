@@ -10,5 +10,7 @@ class UrlMappings {
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
+
+        "/connect/twitterConnect"(controller: 'twitter', action: 'twitterConnect')
     }
 }

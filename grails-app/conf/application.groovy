@@ -78,6 +78,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 //		'/j_spring_security_switch_user/**': ['ROLE_ADMIN']
 //]
 
+user.base.url='http://jsonplaceholder.typicode.com'
 
 
 
