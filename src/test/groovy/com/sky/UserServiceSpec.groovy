@@ -48,6 +48,11 @@ class UserServiceSpec extends Specification {
         then:
             result != null
             result.size() == 10
+            User user = result.first()
+        user.id ==1
+        user.name == "Leanne Graham"
+        user.username == "Bret"
+        user.email == "Sincere@april.biz"
     }
 
     private String getUserListJson() {
