@@ -55,6 +55,11 @@ class UserServiceSpec extends Specification {
         user.email == "Sincere@april.biz"
     }
 
+    void 'A todo can be posted'() {
+
+    }
+
+
     private String getUserListJson() {
         String result = UserServiceSpec.class.getClassLoader().getResource('com/sky/userList.json').text
         return result
