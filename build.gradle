@@ -86,7 +86,9 @@ dependencies {
     compile 'org.mock-server:mockserver-netty:3.10.4'
     compile 'org.mock-server:mockserver-maven-plugin:3.10.4'
     compile group: 'org.mock-server', name: 'mockserver-client-java', version: '3.10.4'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.14'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.13'
+    compile group: 'org.apache.poi', name: 'ooxml-schemas', version: '1.1'
+
 }
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion

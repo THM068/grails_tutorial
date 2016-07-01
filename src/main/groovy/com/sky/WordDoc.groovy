@@ -3,6 +3,9 @@ package com.sky
 import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.apache.poi.xwpf.usermodel.XWPFParagraph
 import org.apache.poi.xwpf.usermodel.XWPFRun
+import org.apache.poi.xwpf.usermodel.XWPFTable
+import org.apache.poi.xwpf.usermodel.XWPFTableCell
+import org.apache.poi.xwpf.usermodel.XWPFTableRow
 
 /**
  * Created by tm1c14 on 30/06/2016.
@@ -33,6 +36,40 @@ class WordDoc {
         XWPFParagraph paragraph = document.createParagraph()
         XWPFRun run  = paragraph.createRun()
         run.setText(text)
+        run.addBreak()
+
+        XWPFTable table = document.createTable(2,2)
+
+        //table.getCTTbl().getTblPr().unsetTblBorders()
+        table.getCTTbl().addNewTblGrid().addNewGridCol().setW(BigInteger.valueOf(12000));
+        table.getCTTbl().getTblGrid().addNewGridCol().setW(BigInteger.valueOf(12000));
+
+        XWPFTableRow tableRowOne = table.getRow(0);
+        //tableRowOne.getCtRow().addNewTrPr().addNewTrHeight().setVal(1)
+        //tableRowOne.setHeight((int)(1440 * 0.05))
+        XWPFTableCell cell = tableRowOne.getCell(0);
+        XWPFParagraph ansParagraph = cell.getParagraphs().get(0);
+        ansParagraph.setSpacingBeforeLines(0)
+        cell.addParagraph(ansParagraph);
+        tableRowOne.getCell(0).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(8000));
+        tableRowOne.getCell(0).setText("one");
+        tableRowOne.getCell(1).setText("two");
+
+
+        XWPFTableRow tableRowTwo = table.createRow();
+        //tableRowTwo.setHeight((int)(1440 * 0.05)) //getCtRow().addNewTrPr().addNewTrHeight().setVal(1)
+        XWPFTableCell cell1 = tableRowTwo.getCell(0);
+        XWPFParagraph ansParagraph1 = cell1.getParagraphs().get(0);
+        cell1.addParagraph(ansParagraph1);
+        ansParagraph1.setSpacingBeforeLines(0)
+        tableRowTwo.getCell(0).setText("four");
+        tableRowTwo.getCell(0).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(8000));
+        tableRowTwo.getCell(1).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(8000));
+        tableRowTwo.getCell(1).setText("five");
+
+       // WPFTable filingTable = document.createTable()
+
+
     }
     public void clearDocument() {
         this.document = new XWPFDocument()
