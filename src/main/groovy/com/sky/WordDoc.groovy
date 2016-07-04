@@ -67,9 +67,33 @@ class WordDoc {
         tableRowTwo.getCell(1).getCTTc().addNewTcPr().addNewTcW().setW(BigInteger.valueOf(8000));
         tableRowTwo.getCell(1).setText("five");
 
+        XWPFTableCell colspanCell = createCellThatSpansRow(table, 0, 2)
+        colspanCell.setText("I span two columns")
+
+
        // WPFTable filingTable = document.createTable()
+    }
 
+    private XWPFTableCell  createCellThatSpansRow(XWPFTable table, int colNum, int span) {
+        XWPFTableRow row = table.createRow()
+        XWPFTableCell colspanCell = row.getCell(0)
+        if (colspanCell.getCTTc().getTcPr() == null){
+            colspanCell.getCTTc().addNewTcPr();
+        }
+        colspanCell.getCTTc().getTcPr().addNewGridSpan()
+        colspanCell.getCTTc().getTcPr().getGridSpan().setVal(BigInteger.valueOf(span));
+        return colspanCell
+    }
 
+    private XWPFTableCell createCellThatSpansRowFromExistingRow(XWPFTable table, int rowNum, int colNum, int span){
+        XWPFTableCell  colspanCell = table.getRow(rowNum).getCell(colNum);
+
+        if (colspanCell.getCTTc().getTcPr() == null){
+            colspanCell.getCTTc().addNewTcPr();
+        }
+        colspanCell.getCTTc().getTcPr().addNewGridSpan()
+        colspanCell.getCTTc().getTcPr().getGridSpan().setVal(BigInteger.valueOf(span));
+        return colspanCell
     }
     public void clearDocument() {
         this.document = new XWPFDocument()
